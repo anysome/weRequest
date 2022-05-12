@@ -30,7 +30,9 @@ const defaultConfig: IInitOption = {
     // 自定义错误处理函数
     errorHandler: null,
     // 请求发送前，提供hook给开发者自定义修改发送内容
-    beforeSend: null
+    beforeSend: null,
+    // 接受请求后，提供hook给开发者自定义检查返回结果
+    afterReceived: null
 };
 
 export default defaultConfig;

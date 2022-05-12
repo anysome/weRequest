@@ -87,6 +87,11 @@ function initializeRequestObj(obj: IRequestOption) {
         obj.url = url.setParams(obj.url, gd);
     }
 
+    // 收到结果后处理
+    if (config.afterReceived) {
+        obj.afterReceived = config.afterReceived;
+    }
+
     durationReporter.start(obj);
 
     return obj;

@@ -23,6 +23,7 @@ export interface IInitOption {
     doNotUseQueryString?: boolean;
     errorHandler?: Function | null;
     beforeSend?: Function | null;
+    afterReceived?: Function | null;
 }
 export interface ICodeToSessionOptions {
     url: string;
@@ -35,6 +36,7 @@ export interface ICodeToSessionOptions {
 }
 export interface IRequestOption extends IRequestObject {
     beforeSend?: Function;
+    afterReceived?: Function;
     showLoading?: boolean | string;
     report?: string;
     cache?: boolean | ((res: string | IAnyObject | ArrayBuffer) => boolean);

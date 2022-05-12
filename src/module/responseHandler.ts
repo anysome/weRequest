@@ -11,8 +11,11 @@ function responseForRequest(
     res: WechatMiniprogram.RequestSuccessCallbackResult,
     obj: IRequestOption
 ): any {
-    if (res.data) {
+    if (obj.afterReceived) {
+        obj.afterReceived(res);
+    }
 
+    if (res.data || (res.statusCode > 199 && res.statusCode < 300)) {
         durationReporter.end(obj);
         
         // 请求格式为json，但返回了string，说明内容中可能存在导致使得JavaScript异常的字符
@@ -59,7 +62,7 @@ function responseForRequest(
             throw { type: 'logic-error', res }
         }
     } else {
-        // https返回状态码非200
+        // https 请求出错
         throw { type: 'http-error', res }
     }
 }

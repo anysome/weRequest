@@ -54,6 +54,8 @@ export interface IInitOption {
     errorHandler?: Function | null;
     /* 请求发送前，提供hook给开发者自定义修改发送内容 */
     beforeSend?: Function | null;
+    /* 接受请求后，提供hook给开发者自定义检查返回结果 */
+    afterReceived?: Function | null;
 }
 
 export interface ICodeToSessionOptions{
@@ -83,6 +85,8 @@ export interface ICodeToSessionOptions{
 export interface IRequestOption extends IRequestObject {
     /* 发起请求前执行的函数 */
     beforeSend?: Function;
+    /* 接受请求后，检查返回结果 */
+    afterReceived?: Function;
     /* 请求过程页面是否展示全屏的loading */
     showLoading?: boolean | string;
     /* 接口请求成功后将自动执行init()中配置的reportCGI函数，其中的name字段值为这里配置的值 */
