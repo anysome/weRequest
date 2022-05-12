@@ -68,9 +68,9 @@ function initializeRequestObj(obj: IRequestOption) {
         obj.header = {...obj.header, ...config.setHeader};
     }
 
-    if (obj.originUrl !== config.codeToSession.url && status.session) {
-        obj.data = { ...obj.data as object, [config.sessionName]: status.session };
-    }
+    // if (obj.originUrl !== config.codeToSession.url && status.session) {
+    //     obj.data = { ...obj.data as object, [config.sessionName]: status.session };
+    // }
 
     // 如果有全局参数，则添加
     const gd = getGlobalData();

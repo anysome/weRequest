@@ -11,7 +11,7 @@ function responseForRequest(
     res: WechatMiniprogram.RequestSuccessCallbackResult,
     obj: IRequestOption
 ): any {
-    if (res.statusCode === 200) {
+    if (res.data) {
 
         durationReporter.end(obj);
         
