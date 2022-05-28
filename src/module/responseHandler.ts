@@ -19,7 +19,7 @@ function responseForRequest(
         durationReporter.end(obj);
         
         // 请求格式为json，但返回了string，说明内容中可能存在导致使得JavaScript异常的字符
-        if (obj.dataType === 'json' && typeof res.data === 'string') {
+        if (obj.dataType === 'json' && typeof res.data === 'string' && res.data.length > 0) {
             res.data = jsonSuperset(res.data);
             try {
                 res.data = JSON.parse(res.data);
