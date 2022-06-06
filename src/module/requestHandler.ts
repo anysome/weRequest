@@ -68,14 +68,13 @@ function initializeRequestObj(obj: IRequestOption) {
         obj.header = {...obj.header, ...config.setHeader};
     }
 
-    // if (obj.originUrl !== config.codeToSession.url && status.session) {
-    //     obj.data = { ...obj.data as object, [config.sessionName]: status.session };
-    // }
+    const gd = getGlobalData();
 
     // 如果有全局参数，则添加
-    const gd = getGlobalData();
-    obj.data = { ...gd, ...obj.data as object };
-
+    if (!Array.isArray(obj.data)) {
+        obj.data = { ...gd, ...obj.data as object };
+    }
+    
     obj.method = obj.method || 'GET';
     obj.dataType = obj.dataType || 'json';
 
@@ -113,13 +112,14 @@ function initializeUploadFileObj(obj: IUploadFileOption) {
         obj.header = {...obj.header, ...config.setHeader};
     }
 
-    if (obj.originUrl !== config.codeToSession.url && status.session) {
-        obj.formData = { ...obj.formData as object, [config.sessionName]: status.session };
-    }
-
-    // 如果有全局参数，则添加
     const gd = getGlobalData();
-    obj.formData = { ...gd, ...obj.formData };
+    if (!Array.isArray(obj.formData)) {
+        if (obj.originUrl !== config.codeToSession.url && status.session) {
+            obj.formData = { ...obj.formData as object, [config.sessionName]: status.session };
+        }
+        // 如果有全局参数，则添加
+        obj.formData = { ...gd, ...obj.formData };
+    }
 
     if (!config.doNotUseQueryString) {
         // 将登陆态也带在url上
