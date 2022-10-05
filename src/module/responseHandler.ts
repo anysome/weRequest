@@ -71,7 +71,7 @@ function responseForUploadFile(
     res: WechatMiniprogram.UploadFileSuccessCallbackResult,
     obj: IUploadFileOption
 ): any {
-    if (res.statusCode === 200) {
+    if (res.statusCode > 199 && res.statusCode < 300) {
 
         durationReporter.end(obj);
 

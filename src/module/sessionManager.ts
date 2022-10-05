@@ -161,7 +161,7 @@ function code2Session(code: string) {
         wx.request({
             ...obj,
             success(res: WechatMiniprogram.RequestSuccessCallbackResult) {
-                if (res.statusCode === 200) {
+                if (res.statusCode > 199 && res.statusCode < 300) {
                     // 耗时上报
                     if (config.codeToSession.report) {
                         let end = new Date().getTime();
